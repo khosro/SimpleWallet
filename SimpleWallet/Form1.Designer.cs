@@ -40,6 +40,9 @@
             this.Cmb_Network = new System.Windows.Forms.ComboBox();
             this.Txt_MasterPublicKey = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.Txt_Path = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Cmb_ScriptPubKeyType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Txt_Words
@@ -95,7 +98,7 @@
             // 
             // Btn_CreateWallet
             // 
-            this.Btn_CreateWallet.Location = new System.Drawing.Point(282, 398);
+            this.Btn_CreateWallet.Location = new System.Drawing.Point(284, 460);
             this.Btn_CreateWallet.Name = "Btn_CreateWallet";
             this.Btn_CreateWallet.Size = new System.Drawing.Size(138, 23);
             this.Btn_CreateWallet.TabIndex = 6;
@@ -127,14 +130,15 @@
             // 
             this.Cmb_Network.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_Network.FormattingEnabled = true;
-            this.Cmb_Network.Location = new System.Drawing.Point(121, 361);
+            this.Cmb_Network.Location = new System.Drawing.Point(121, 435);
             this.Cmb_Network.Name = "Cmb_Network";
             this.Cmb_Network.Size = new System.Drawing.Size(121, 21);
             this.Cmb_Network.TabIndex = 9;
+            this.Cmb_Network.SelectedIndexChanged += new System.EventHandler(this.Cmb_Network_SelectedIndexChanged);
             // 
             // Txt_MasterPublicKey
             // 
-            this.Txt_MasterPublicKey.Location = new System.Drawing.Point(121, 307);
+            this.Txt_MasterPublicKey.Location = new System.Drawing.Point(121, 310);
             this.Txt_MasterPublicKey.Multiline = true;
             this.Txt_MasterPublicKey.Name = "Txt_MasterPublicKey";
             this.Txt_MasterPublicKey.Size = new System.Drawing.Size(439, 38);
@@ -143,17 +147,45 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 314);
+            this.label4.Location = new System.Drawing.Point(25, 317);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Master public key";
             // 
+            // Txt_Path
+            // 
+            this.Txt_Path.Location = new System.Drawing.Point(121, 363);
+            this.Txt_Path.Name = "Txt_Path";
+            this.Txt_Path.Size = new System.Drawing.Size(439, 20);
+            this.Txt_Path.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(34, 363);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Path";
+            // 
+            // Cmb_ScriptPubKeyType
+            // 
+            this.Cmb_ScriptPubKeyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cmb_ScriptPubKeyType.FormattingEnabled = true;
+            this.Cmb_ScriptPubKeyType.Location = new System.Drawing.Point(121, 399);
+            this.Cmb_ScriptPubKeyType.Name = "Cmb_ScriptPubKeyType";
+            this.Cmb_ScriptPubKeyType.Size = new System.Drawing.Size(121, 21);
+            this.Cmb_ScriptPubKeyType.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(843, 550);
+            this.Controls.Add(this.Cmb_ScriptPubKeyType);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.Txt_Path);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Txt_MasterPublicKey);
             this.Controls.Add(this.Cmb_Network);
@@ -188,6 +220,9 @@
         private System.Windows.Forms.ComboBox Cmb_Network;
         private System.Windows.Forms.TextBox Txt_MasterPublicKey;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox Txt_Path;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox Cmb_ScriptPubKeyType;
     }
 }
 

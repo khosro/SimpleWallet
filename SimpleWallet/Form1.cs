@@ -17,6 +17,15 @@ namespace SimpleWallet
         bool IsTxt_PasswordPasswordChar = true;
         private static Wordlist Wordlist = Wordlist.English;
 
+        string MainNetworkPath = "m/44'/0'/0'";
+        string TestNetworkPath = "m/44'/1'/0'";
+
+        string Path
+        {
+            get { return Txt_Path.Text.Trim(); }
+        }
+
+
         public Form1()
         {
             InitializeComponent();
@@ -30,11 +39,14 @@ namespace SimpleWallet
             Txt_MasterPublicKey.ReadOnly = true;
             Txt_Address.ReadOnly = true;
             Cmb_Network.DataSource = Enum.GetValues(typeof(NetworkType));
+            Cmb_ScriptPubKeyType.DataSource = Enum.GetValues(typeof(ScriptPubKeyType));
+            Cmb_ScriptPubKeyType.SelectedItem = ScriptPubKeyType.Segwit;
         }
 
         private void Btn_CreateWallet_Click(object sender, EventArgs e)
         {
             string basePath;
+            ScriptPubKeyType scriptPubKeyType = (ScriptPubKeyType)Cmb_ScriptPubKeyType.SelectedItem;
             NetworkType networkType = (NetworkType)Cmb_Network.SelectedItem;
             Network net = Network.Main;
             if (networkType == NetworkType.Mainnet)
@@ -49,14 +61,17 @@ namespace SimpleWallet
             {
                 net = Network.RegTest;
             }
-
-            if (net == Network.Main)
+            basePath = Path;
+            if (string.IsNullOrWhiteSpace(basePath))
             {
-                basePath = "m/44'/0'/0'";
-            }
-            else
-            {
-                basePath = "m/44'/1'/0'";
+                if (net == Network.Main)
+                {
+                    basePath = MainNetworkPath;
+                }
+                else
+                {
+                    basePath = TestNetworkPath;
+                }
             }
 
             Mnemonic mnemonic = new Mnemonic(Wordlist, WordCount.Twelve);
@@ -70,7 +85,7 @@ namespace SimpleWallet
                 var privkey = hdroot.Derive(new NBitcoin.KeyPath(basePath + "/0/" + i.ToString()));
                 var publicKey = privkey.Neuter().PubKey;
                 var privateKey = privkey.Neuter().GetWif(net);
-                var address = publicKey.GetAddress(ScriptPubKeyType.Segwit, net).ToString();
+                var address = publicKey.GetAddress(scriptPubKeyType, net).ToString();
                 addresses.Add(address);
             }
 
@@ -120,5 +135,25 @@ namespace SimpleWallet
                 Btn_ShowPassword.Text = "Show Password";
             }
         }
+
+        private void Cmb_Network_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetMainNetworkPath();
+        }
+
+        void SetMainNetworkPath()
+        {
+            NetworkType networkType = (NetworkType)Cmb_Network.SelectedItem;
+            if (networkType == NetworkType.Mainnet)
+            {
+                Txt_Path.Text = MainNetworkPath;
+            }
+            else
+            {
+                Txt_Path.Text = TestNetworkPath;
+            }
+        }
     }
+
+
 }
