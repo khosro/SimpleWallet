@@ -80,7 +80,7 @@ namespace SimpleWallet
             Mnemonic mnemo = new Mnemonic(words, Wordlist);
             ExtKey hdroot = mnemo.DeriveExtKey(password);
             List<string> addresses = new List<string>();
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 10; i++)
             {
                 var privkey = hdroot.Derive(new NBitcoin.KeyPath(basePath + "/0/" + i.ToString()));
                 var publicKey = privkey.Neuter().PubKey;
@@ -94,6 +94,7 @@ namespace SimpleWallet
             string masterPrivateKey = masterKey.GetWif(net).ToString();
 
             Txt_Address.Text = addresses[0];
+            Txt_Addresses.Text = string.Join("\r\n", addresses);
             Txt_Password.Text = password;
             Txt_Words.Text = words;
             Txt_MasterPublicKey.Text = masterPublicKey;
