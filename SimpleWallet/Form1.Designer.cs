@@ -45,21 +45,22 @@
             this.Cmb_ScriptPubKeyType = new System.Windows.Forms.ComboBox();
             this.Txt_Addresses = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.Chk_IsPassword = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // Txt_Words
             // 
-            this.Txt_Words.Location = new System.Drawing.Point(121, 35);
+            this.Txt_Words.Location = new System.Drawing.Point(130, 17);
             this.Txt_Words.Multiline = true;
             this.Txt_Words.Name = "Txt_Words";
             this.Txt_Words.PasswordChar = '*';
-            this.Txt_Words.Size = new System.Drawing.Size(448, 51);
+            this.Txt_Words.Size = new System.Drawing.Size(439, 51);
             this.Txt_Words.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 73);
+            this.label1.Location = new System.Drawing.Point(64, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 1;
@@ -110,7 +111,7 @@
             // 
             // Btn_ShowWords
             // 
-            this.Btn_ShowWords.Location = new System.Drawing.Point(610, 35);
+            this.Btn_ShowWords.Location = new System.Drawing.Point(610, 17);
             this.Btn_ShowWords.Name = "Btn_ShowWords";
             this.Btn_ShowWords.Size = new System.Drawing.Size(106, 23);
             this.Btn_ShowWords.TabIndex = 7;
@@ -198,11 +199,24 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Addresses";
             // 
+            // Chk_IsPassword
+            // 
+            this.Chk_IsPassword.AutoSize = true;
+            this.Chk_IsPassword.Checked = true;
+            this.Chk_IsPassword.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Chk_IsPassword.Location = new System.Drawing.Point(130, 88);
+            this.Chk_IsPassword.Name = "Chk_IsPassword";
+            this.Chk_IsPassword.Size = new System.Drawing.Size(80, 17);
+            this.Chk_IsPassword.TabIndex = 17;
+            this.Chk_IsPassword.Text = "IsPassword";
+            this.Chk_IsPassword.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 550);
+            this.Controls.Add(this.Chk_IsPassword);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Txt_Addresses);
             this.Controls.Add(this.Cmb_ScriptPubKeyType);
@@ -247,6 +261,7 @@
         private System.Windows.Forms.ComboBox Cmb_ScriptPubKeyType;
         private System.Windows.Forms.TextBox Txt_Addresses;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox Chk_IsPassword;
     }
 }
 

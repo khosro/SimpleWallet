@@ -34,8 +34,8 @@ namespace SimpleWallet
 
         void Init()
         {
-            Txt_Password.ReadOnly = true;
-            Txt_Words.ReadOnly = true;
+            //Txt_Password.ReadOnly = true;
+            //Txt_Words.ReadOnly = true;
             Txt_MasterPublicKey.ReadOnly = true;
             Txt_Address.ReadOnly = true;
             Cmb_Network.DataSource = Enum.GetValues(typeof(NetworkType));
@@ -75,8 +75,20 @@ namespace SimpleWallet
             }
 
             Mnemonic mnemonic = new Mnemonic(Wordlist, WordCount.Twelve);
-            var words = mnemonic.ToString();
-            var password = Guid.NewGuid().ToString();
+            string words = Txt_Words.Text.Trim();
+            if (string.IsNullOrWhiteSpace(words))
+            {
+                words = mnemonic.ToString();
+            }
+            string password = null;
+            if (Chk_IsPassword.Checked)
+            {
+                password = Txt_Password.Text.Trim();
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    password = Guid.NewGuid().ToString();
+                }
+            }
             Mnemonic mnemo = new Mnemonic(words, Wordlist);
             ExtKey hdroot = mnemo.DeriveExtKey(password);
             List<string> addresses = new List<string>();
@@ -95,8 +107,8 @@ namespace SimpleWallet
 
             Txt_Address.Text = addresses[0];
             Txt_Addresses.Text = string.Join("\r\n", addresses);
-            Txt_Password.Text = password;
             Txt_Words.Text = words;
+            Txt_Password.Text = password;
             Txt_MasterPublicKey.Text = masterPublicKey;
         }
 
